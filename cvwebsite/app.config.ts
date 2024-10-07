@@ -14,7 +14,6 @@ export default defineAppConfig({
       position: 'left', // possible value are : | 'left' | 'center' | 'right'
       logo: {
         path: '/logo.png', // path of the logo
-        alt: 'typography' // alt of the logo
       }
     },
     footer: {

@@ -2,7 +2,7 @@
 <template>
   <div>
     <NuxtLayout>
-      <Header />
+      <header />
         <ul>
           <li>
             <NuxtLink to="/">Home</NuxtLink>
