@@ -12,4 +12,6 @@ export default defineNuxtConfig({
     css: ["/assets/main.scss"],
 
     compatibilityDate: "2024-10-07",
+
+    target: 'static',
 });
