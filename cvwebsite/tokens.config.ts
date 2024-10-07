@@ -2,7 +2,7 @@
 import { defineTheme } from "pinceau";
 
 export default defineTheme({
-    alpine: {
+    typography: {
         readableLine: "150ch",
         body: {
             backgroundColor: {
@@ -13,7 +13,6 @@ export default defineTheme({
                 initial: '{color.gray.100}',
                 dark: '{color.gray.400}'
             }
-
         }
     },
 });
