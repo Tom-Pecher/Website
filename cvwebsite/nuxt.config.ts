@@ -3,8 +3,8 @@ import { createResolver } from "@nuxt/kit";
 const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
-    // https://github.com/nuxt-themes/alpine
-    extends: "@nuxt-themes/typography",
+    // https://github.com/nuxt-themes/typography
+    //extends: "@nuxt-themes/typography",
 
     // Custom components
     components: [{ path: resolve("./components"), global: true }],

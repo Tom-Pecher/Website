@@ -13,7 +13,7 @@ export default defineAppConfig({
     header: {
       position: 'left', // possible value are : | 'left' | 'center' | 'right'
       logo: {
-        path: '/logo.svg', // path of the logo
+        path: '/logo.png', // path of the logo
         alt: 'typography' // alt of the logo
       }
     },
