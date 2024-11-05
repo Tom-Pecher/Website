@@ -1,0 +1,283 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     16498,        275]
+NotebookOptionsPosition[     15927,        257]
+NotebookOutlinePosition[     16319,        273]
+CellTagsIndexPosition[     16276,        270]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"funcs", "=", 
+   RowBox[{"ToExpression", "[", 
+    RowBox[{"Sort", "[", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Plus\>\"", ",", "\"\<Times\>\"", ",", "\"\<Power\>\"", ",", 
+       "\"\<List\>\"", ",", "\"\<Table\>\"", ",", "\"\<Range\>\"", ",", 
+       "\"\<Sum\>\"", ",", "\"\<Product\>\"", ",", "\"\<Integrate\>\"", ",", 
+       "\"\<D\>\"", ",", "\"\<Solve\>\"", ",", "\"\<NSolve\>\"", ",", 
+       "\"\<Reduce\>\"", ",", "\"\<Simplify\>\"", ",", "\"\<FullSimplify\>\"",
+        ",", "\"\<Expand\>\"", ",", "\"\<Factor\>\"", ",", "\"\<Plot\>\"", 
+       ",", "\"\<Plot3D\>\"", ",", "\"\<ListPlot\>\"", ",", 
+       "\"\<ListLinePlot\>\"", ",", "\"\<ContourPlot\>\"", ",", 
+       "\"\<ParametricPlot\>\"", ",", "\"\<RegionPlot\>\"", ",", 
+       "\"\<BarChart\>\"", ",", "\"\<Histogram\>\"", ",", "\"\<PieChart\>\"", 
+       ",", "\"\<Graphics\>\"", ",", "\"\<Graphics3D\>\"", ",", 
+       "\"\<Manipulate\>\"", ",", "\"\<Dynamic\>\"", ",", "\"\<Animate\>\"", 
+       ",", "\"\<Style\>\"", ",", "\"\<Row\>\"", ",", "\"\<Column\>\"", ",", 
+       "\"\<Grid\>\"", ",", "\"\<Image\>\"", ",", "\"\<ImageData\>\"", ",", 
+       "\"\<ImageResize\>\"", ",", "\"\<ImageCrop\>\"", ",", 
+       "\"\<ImageRotate\>\"", ",", "\"\<ImageReflect\>\"", ",", 
+       "\"\<ImageCompose\>\"", ",", "\"\<ImagePartition\>\"", ",", 
+       "\"\<EdgeDetect\>\"", ",", "\"\<Blur\>\"", ",", "\"\<Sharpen\>\"", 
+       ",", "\"\<ColorConvert\>\"", ",", "\"\<ImageFilter\>\"", ",", 
+       "\"\<ColorReplace\>\"", ",", "\"\<ImageCollage\>\"", ",", 
+       "\"\<ImageAssemble\>\"", ",", "\"\<ImageTransformation\>\"", ",", 
+       "\"\<RandomInteger\>\"", ",", "\"\<RandomReal\>\"", ",", 
+       "\"\<RandomChoice\>\"", ",", "\"\<RandomSample\>\"", ",", 
+       "\"\<RandomVariate\>\"", ",", "\"\<SeedRandom\>\"", ",", 
+       "\"\<Mean\>\"", ",", "\"\<Median\>\"", ",", "\"\<Variance\>\"", ",", 
+       "\"\<StandardDeviation\>\"", ",", "\"\<Quantile\>\"", ",", 
+       "\"\<BinCounts\>\"", ",", "\"\<Nearest\>\"", ",", 
+       "\"\<FindClusters\>\"", ",", "\"\<FindShortestTour\>\"", ",", 
+       "\"\<NearestNeighborGraph\>\"", ",", "\"\<FindGraphCommunities\>\"", 
+       ",", "\"\<Eigenvalues\>\"", ",", "\"\<Eigenvectors\>\"", ",", 
+       "\"\<Det\>\"", ",", "\"\<Inverse\>\"", ",", "\"\<Transpose\>\"", ",", 
+       "\"\<Dot\>\"", ",", "\"\<MatrixPower\>\"", ",", "\"\<LinearSolve\>\"", 
+       ",", "\"\<LinearModelFit\>\"", ",", "\"\<NonlinearModelFit\>\"", ",", 
+       "\"\<FindFit\>\"", ",", "\"\<Fit\>\"", ",", "\"\<LeastSquares\>\"", 
+       ",", "\"\<LinearProgramming\>\"", ",", "\"\<FindMaximum\>\"", ",", 
+       "\"\<FindMinimum\>\"", ",", "\"\<FindArgMin\>\"", ",", 
+       "\"\<FindArgMax\>\"", ",", "\"\<FindRoot\>\"", ",", "\"\<NDSolve\>\"", 
+       ",", "\"\<DSolve\>\"", ",", "\"\<Fourier\>\"", ",", 
+       "\"\<InverseFourier\>\"", ",", "\"\<LaplaceTransform\>\"", ",", 
+       "\"\<InverseLaplaceTransform\>\"", ",", "\"\<FourierTransform\>\"", 
+       ",", "\"\<InverseFourierTransform\>\"", ",", "\"\<DiscretePlot\>\"", 
+       ",", "\"\<UnitStep\>\"", ",", "\"\<DiracDelta\>\"", ",", 
+       "\"\<KroneckerDelta\>\"", ",", "\"\<HeavisideTheta\>\"", ",", 
+       "\"\<InverseWaveletTransform\>\"", ",", 
+       "\"\<DiscreteWaveletTransform\>\"", ",", "\"\<WaveletBestBasis\>\"", 
+       ",", "\"\<FactorInteger\>\"", ",", "\"\<PrimeQ\>\"", ",", 
+       "\"\<NextPrime\>\"", ",", "\"\<Prime\>\"", ",", "\"\<PrimePi\>\"", 
+       ",", "\"\<Mod\>\"", ",", "\"\<Quotient\>\"", ",", 
+       "\"\<Rationalize\>\"", ",", "\"\<IntegerPart\>\"", ",", 
+       "\"\<FractionalPart\>\"", ",", "\"\<Floor\>\"", ",", "\"\<Ceiling\>\"",
+        ",", "\"\<Round\>\"", ",", "\"\<Divisible\>\"", ",", "\"\<GCD\>\"", 
+       ",", "\"\<LCM\>\"", ",", "\"\<FindPath\>\"", ",", "\"\<FindCycle\>\"", 
+       ",", "\"\<Graph\>\"", ",", "\"\<GraphPlot\>\"", ",", 
+       "\"\<GraphPlot3D\>\"", ",", "\"\<GraphDistance\>\"", ",", 
+       "\"\<GraphDiameter\>\"", ",", "\"\<AdjacencyMatrix\>\"", ",", 
+       "\"\<IncidenceMatrix\>\"", ",", "\"\<DegreeCentrality\>\"", ",", 
+       "\"\<PageRankCentrality\>\"", ",", "\"\<BetweennessCentrality\>\"", 
+       ",", "\"\<EdgeList\>\"", ",", "\"\<VertexList\>\"", ",", 
+       "\"\<Subgraph\>\"", ",", "\"\<CompleteGraph\>\"", ",", 
+       "\"\<CycleGraph\>\"", ",", "\"\<PathGraph\>\"", ",", 
+       "\"\<RandomGraph\>\"", ",", "\"\<GraphUnion\>\"", ",", 
+       "\"\<GraphIntersection\>\"", ",", "\"\<GraphDifference\>\"", ",", 
+       "\"\<Complement\>\"", ",", "\"\<Union\>\"", ",", 
+       "\"\<Intersection\>\"", ",", "\"\<Complement\>\"", ",", "\"\<Sort\>\"",
+        ",", "\"\<SortBy\>\"", ",", "\"\<Select\>\"", ",", "\"\<Cases\>\"", 
+       ",", "\"\<DeleteCases\>\"", ",", "\"\<Replace\>\"", ",", 
+       "\"\<ReplaceAll\>\"", ",", "\"\<Rule\>\"", ",", "\"\<RuleDelayed\>\"", 
+       ",", "\"\<Condition\>\"", ",", "\"\<MatchQ\>\"", ",", "\"\<FreeQ\>\"", 
+       ",", "\"\<Count\>\"", ",", "\"\<Position\>\"", ",", "\"\<Map\>\"", 
+       ",", "\"\<Apply\>\"", ",", "\"\<MapIndexed\>\"", ",", 
+       "\"\<MapThread\>\"", ",", "\"\<Nest\>\"", ",", "\"\<NestList\>\"", 
+       ",", "\"\<Fold\>\"", ",", "\"\<FoldList\>\"", ",", "\"\<Scan\>\"", 
+       ",", "\"\<Function\>\"", ",", "\"\<If\>\"", ",", "\"\<Which\>\"", ",", 
+       "\"\<Switch\>\"", ",", "\"\<Do\>\"", ",", "\"\<While\>\"", ",", 
+       "\"\<For\>\"", ",", "\"\<Module\>\"", ",", "\"\<Block\>\"", ",", 
+       "\"\<With\>\"", ",", "\"\<DynamicModule\>\"", ",", "\"\<Catch\>\"", 
+       ",", "\"\<Throw\>\"", ",", "\"\<Assert\>\"", ",", "\"\<Check\>\"", 
+       ",", "\"\<CheckAbort\>\"", ",", "\"\<AbortProtect\>\"", ",", 
+       "\"\<Quiet\>\"", ",", "\"\<Echo\>\"", ",", "\"\<Print\>\"", ",", 
+       "\"\<PrintTemporary\>\"", ",", "\"\<NotebookWrite\>\"", ",", 
+       "\"\<NotebookDelete\>\"", ",", "\"\<NotebookRead\>\"", ",", 
+       "\"\<NotebookApply\>\"", ",", "\"\<CreateNotebook\>\"", ",", 
+       "\"\<Notebook\>\"", ",", "\"\<NotebookSave\>\"", ",", 
+       "\"\<NotebookClose\>\"", ",", "\"\<NotebookOpen\>\"", ",", 
+       "\"\<SetOptions\>\"", ",", "\"\<CurrentValue\>\"", ",", 
+       "\"\<Options\>\"", ",", "\"\<OptionsPattern\>\"", ",", 
+       "\"\<Message\>\"", ",", "\"\<Clear\>\"", ",", "\"\<ClearAll\>\"", ",", 
+       "\"\<Remove\>\"", ",", "\"\<Symbol\>\"", ",", "\"\<ToExpression\>\"", 
+       ",", "\"\<ToString\>\"", ",", "\"\<InputForm\>\"", ",", 
+       "\"\<OutputForm\>\"", ",", "\"\<StandardForm\>\"", ",", 
+       "\"\<TraditionalForm\>\"", ",", "\"\<FullForm\>\"", ",", 
+       "\"\<Short\>\"", ",", "\"\<ByteCount\>\"", ",", 
+       "\"\<MemoryConstrained\>\"", ",", "\"\<TimeConstrained\>\"", ",", 
+       "\"\<AbsoluteTime\>\"", ",", "\"\<DateString\>\"", ",", 
+       "\"\<DateList\>\"", ",", "\"\<DateObject\>\"", ",", 
+       "\"\<CurrentDate\>\"", ",", "\"\<Clock\>\"", ",", "\"\<Refresh\>\"", 
+       ",", "\"\<Pause\>\"", ",", "\"\<TimeSeries\>\"", ",", 
+       "\"\<EventSeries\>\"", ",", "\"\<TemporalData\>\"", ",", 
+       "\"\<TimeSeriesModelFit\>\"", ",", "\"\<MovingAverage\>\"", ",", 
+       "\"\<ExponentialMovingAverage\>\"", ",", "\"\<FinancialData\>\"", ",", 
+       "\"\<FinancialIndicator\>\"", ",", "\"\<CountryData\>\"", ",", 
+       "\"\<WeatherData\>\"", ",", "\"\<GeoGraphics\>\"", ",", 
+       "\"\<GeoPosition\>\"", ",", "\"\<GeoDistance\>\"", ",", 
+       "\"\<GeoNearest\>\"", ",", "\"\<CityData\>\"", ",", "\"\<Entity\>\"", 
+       ",", "\"\<EntityList\>\"", ",", "\"\<EntityValue\>\"", ",", 
+       "\"\<SemanticImport\>\"", ",", "\"\<SemanticImportString\>\"", ",", 
+       "\"\<Import\>\"", ",", "\"\<Export\>\"", ",", "\"\<FileNames\>\"", 
+       ",", "\"\<Directory\>\"", ",", "\"\<SetDirectory\>\"", ",", 
+       "\"\<NotebookDirectory\>\"", ",", "\"\<CreateFile\>\"", ",", 
+       "\"\<DeleteFile\>\"", ",", "\"\<FileSize\>\"", ",", 
+       "\"\<FileByteCount\>\"", ",", "\"\<FileHash\>\"", ",", 
+       "\"\<FileDate\>\"", ",", "\"\<StringJoin\>\"", ",", 
+       "\"\<StringSplit\>\"", ",", "\"\<StringReplace\>\"", ",", 
+       "\"\<StringCases\>\"", ",", "\"\<StringMatchQ\>\"", ",", 
+       "\"\<StringFreeQ\>\"", ",", "\"\<StringCount\>\"", ",", 
+       "\"\<StringPosition\>\"", ",", "\"\<ToUpperCase\>\"", ",", 
+       "\"\<ToLowerCase\>\"", ",", "\"\<Characters\>\"", ",", 
+       "\"\<StyleForm\>\"", ",", "\"\<Framed\>\"", ",", "\"\<Panel\>\"", ",", 
+       "\"\<TabView\>\"", ",", "\"\<Checkbox\>\"", ",", "\"\<PopupWindow\>\"",
+        ",", "\"\<Pane\>\"", ",", "\"\<Spacer\>\"", ",", "\"\<StatusArea\>\"",
+        ",", "\"\<ProgressIndicator\>\"", ",", "\"\<Slider\>\"", ",", 
+       "\"\<Locator\>\"", ",", "\"\<Opener\>\"", ",", "\"\<EventHandler\>\"", 
+       ",", "\"\<LocatorPane\>\"", ",", "\"\<Button\>\"", ",", 
+       "\"\<ClickPane\>\"", ",", "\"\<RadioButton\>\""}], "}"}], "]"}], 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.939598889627162*^9, 3.9395989018518744`*^9}, {
+  3.9395989510224257`*^9, 3.939598956526951*^9}, {3.9395995050162067`*^9, 
+  3.9395995070673923`*^9}, {3.939788234684993*^9, 3.939788242298957*^9}, {
+  3.939788417320611*^9, 3.9397884637736197`*^9}},
+ CellLabel->"In[28]:=",ExpressionUUID->"c69ba79f-4994-426a-8446-5bcf9b274a8c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Information", "[", 
+    RowBox[{"#", ",", "\"\<Usage\>\""}], "]"}], "&"}], "/@", 
+  "funcs"}]], "Input",
+ CellChangeTimes->{{3.9397883540912313`*^9, 3.939788395207305*^9}, {
+   3.9397884390729856`*^9, 3.9397884396840467`*^9}, {3.93978847469641*^9, 
+   3.939788486283532*^9}, {3.939788616816063*^9, 3.939788622697028*^9}, 
+   3.939788673982782*^9},
+ CellLabel->"In[38]:=",ExpressionUUID->"0f5bcb08-014a-4468-ab16-d17fd9a79363"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"\\!\\(\\*RowBox[{\\\"AbortProtect\\\", \\\"[\\\", \
+StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\"]\\\"}]\\) evaluates \
+\\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\), saving any aborts until the \
+evaluation is complete. \"\>", 
+   ",", "\<\"\\!\\(\\*RowBox[{\\\"AbsoluteTime\\\", \\\"[\\\", \\\"]\\\"}]\\) \
+gives the total number of seconds since the beginning of January 1, 1900, in \
+your time zone.\\n\\!\\(\\*RowBox[{\\\"AbsoluteTime\\\", \\\"[\\\", StyleBox[\
+\\\"date\\\", \\\"TI\\\"], \\\"]\\\"}]\\) gives the absolute time \
+specification corresponding to the given \\!\\(\\*StyleBox[\\\"date\\\", \
+\\\"TI\\\"]\\) specification.\"\>", 
+   ",", "\<\"\\!\\(\\*RowBox[{\\\"AdjacencyMatrix\\\", \\\"[\\\", StyleBox[\\\
+\"g\\\", \\\"TI\\\"], \\\"]\\\"}]\\) gives the vertex\[Dash]vertex adjacency \
+matrix of the graph \\!\\(\\*StyleBox[\\\"g\\\", \
+\\\"TI\\\"]\\).\\n\\!\\(\\*RowBox[{\\\"AdjacencyMatrix\\\", \\\"[\\\", \
+RowBox[{\\\"{\\\", RowBox[{RowBox[{StyleBox[\\\"v\\\", \\\"TI\\\"], \\\"\
+\[Rule]\\\", StyleBox[\\\"w\\\", \\\"TI\\\"]}], \\\",\\\", StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}], \\\"]\\\"}]\\) uses rules \\!\\(\
+\\*RowBox[{StyleBox[\\\"v\\\", \\\"TI\\\"], \\\"\[Rule]\\\", StyleBox[\\\"w\\\
+\", \\\"TI\\\"]}]\\) to specify the graph \\!\\(\\*StyleBox[\\\"g\\\", \\\"TI\
+\\\"]\\). \"\>", 
+   ",", "\<\"\\!\\(\\*RowBox[{\\\"Animate\\\", \\\"[\\\", RowBox[{StyleBox[\\\
+\"expr\\\", \\\"TI\\\"], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{StyleBox[\\\"u\
+\\\", \\\"TI\\\"], \\\",\\\", SubscriptBox[StyleBox[\\\"u\\\", \\\"TI\\\"], \
+StyleBox[\\\"min\\\", \\\"TI\\\"]], \\\",\\\", \
+SubscriptBox[StyleBox[\\\"u\\\", \\\"TI\\\"], StyleBox[\\\"max\\\", \
+\\\"TI\\\"]]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) generates an animation of \
+\\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) in which \
+\\!\\(\\*StyleBox[\\\"u\\\", \\\"TI\\\"]\\) varies continuously from \
+\\!\\(\\*SubscriptBox[StyleBox[\\\"u\\\", \\\"TI\\\"], StyleBox[\\\"min\\\", \
+\\\"TI\\\"]]\\) to \\!\\(\\*SubscriptBox[StyleBox[\\\"u\\\", \\\"TI\\\"], \
+StyleBox[\\\"max\\\", \\\"TI\\\"]]\\). \\n\\!\\(\\*RowBox[{\\\"Animate\\\", \
+\\\"[\\\", RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{StyleBox[\\\"u\\\", \\\"TI\\\"], \\\",\\\", \
+SubscriptBox[StyleBox[\\\"u\\\", \\\"TI\\\"], StyleBox[\\\"min\\\", \
+\\\"TI\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"u\\\", \\\"TI\\\"], \
+StyleBox[\\\"max\\\", \\\"TI\\\"]], \\\",\\\", StyleBox[\\\"du\\\", \
+\\\"TI\\\"]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) takes \
+\\!\\(\\*StyleBox[\\\"u\\\", \\\"TI\\\"]\\) to vary in steps \
+\\!\\(\\*StyleBox[\\\"du\\\", \\\"TI\\\"]\\). \\n\\!\\(\\*RowBox[{\\\"Animate\
+\\\", \\\"[\\\", RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{StyleBox[\\\"u\\\", \\\"TI\\\"], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"u\\\", \\\"TI\\\"], \
+StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"u\\\", \
+\\\"TI\\\"], StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\",\\\", StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) \
+makes \\!\\(\\*StyleBox[\\\"u\\\", \\\"TI\\\"]\\) take on discrete values \\!\
+\\(\\*SubscriptBox[StyleBox[\\\"u\\\", \\\"TI\\\"], StyleBox[\\\"1\\\", \
+\\\"TR\\\"]]\\), \\!\\(\\*SubscriptBox[StyleBox[\\\"u\\\", \\\"TI\\\"], \
+StyleBox[\\\"2\\\", \\\"TR\\\"]]\\), \[Ellipsis]. \
+\\n\\!\\(\\*RowBox[{\\\"Animate\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{StyleBox[\\\"u\\\", \\\"TI\\\"], \\\",\\\", \
+StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}], \\\",\\\", RowBox[{\
+\\\"{\\\", RowBox[{StyleBox[\\\"v\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}], \\\",\\\", StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"]\\\"}]\\) varies all the variables \
+\\!\\(\\*StyleBox[\\\"u\\\", \\\"TI\\\"]\\), \\!\\(\\*StyleBox[\\\"v\\\", \
+\\\"TI\\\"]\\), \[Ellipsis]. \"\>", 
+   ",", "\<\"\\!\\(\\*RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"], \\\"@@\\\", \
+StyleBox[\\\"expr\\\", \\\"TI\\\"]}]\\) or \\!\\(\\*RowBox[{\\\"Apply\\\", \\\
+\"[\\\", RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"], \\\",\\\", \
+StyleBox[\\\"expr\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) replaces the head of \\!\
+\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) by \\!\\(\\*StyleBox[\\\"f\\\", \
+\\\"TI\\\"]\\). \\n\\!\\(\\*RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"], \
+\\\"@@@\\\", StyleBox[\\\"expr\\\", \\\"TI\\\"]}]\\) or \
+\\!\\(\\*RowBox[{\\\"Apply\\\", \\\"[\\\", RowBox[{StyleBox[\\\"f\\\", \\\"TI\
+\\\"], \\\",\\\", StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", \
+RowBox[{\\\"{\\\", \\\"1\\\", \\\"}\\\"}]}], \\\"]\\\"}]\\) replaces heads at \
+level 1 of \\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) by \
+\\!\\(\\*StyleBox[\\\"f\\\", \
+\\\"TI\\\"]\\).\\n\\!\\(\\*RowBox[{\\\"Apply\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"f\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"expr\\\", \\\
+\"TI\\\"], \\\",\\\", StyleBox[\\\"levelspec\\\", \\\"TI\\\"]}], \
+\\\"]\\\"}]\\) replaces heads in parts of \\!\\(\\*StyleBox[\\\"expr\\\", \
+\\\"TI\\\"]\\) specified by \\!\\(\\*StyleBox[\\\"levelspec\\\", \
+\\\"TI\\\"]\\). \\n\\!\\(\\*RowBox[{\\\"Apply\\\", \\\"[\\\", \
+StyleBox[\\\"f\\\", \\\"TI\\\"], \\\"]\\\"}]\\) represents an operator form \
+of Apply that can be applied to an expression.\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.939788363482809*^9, 3.9397884057994833`*^9}, {
+   3.939788470929236*^9, 3.939788487110652*^9}, 3.939788630975432*^9},
+ CellLabel->"Out[37]=",ExpressionUUID->"fc3c111d-a6bf-43f2-9049-66a2aaa76b07"]
+}, Open  ]]
+},
+WindowSize->{1396.5, 762.},
+WindowMargins->{{0, Automatic}, {0, Automatic}},
+FrontEndVersion->"13.1 for Linux x86 (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"019f1fbc-fa4a-4bca-b251-f0a1a95fcb43"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 9202, 136, 608, "Input",ExpressionUUID->"c69ba79f-4994-426a-8446-5bcf9b274a8c"],
+Cell[CellGroupData[{
+Cell[9785, 160, 473, 10, 29, "Input",ExpressionUUID->"0f5bcb08-014a-4468-ab16-d17fd9a79363"],
+Cell[10261, 172, 5650, 82, 272, "Output",ExpressionUUID->"fc3c111d-a6bf-43f2-9049-66a2aaa76b07"]
+}, Open  ]]
+}
+]
+*)
+
