@@ -100,25 +100,13 @@ section {
     border-radius: 8px;
 }
 
-/* 
-ul {
-    list-style: none;
-    padding: 0;
-}
-*/
-
-/* 
-ul li {
-    margin: 5px 0;
-}
-*/
 
 .tooltip-container {
     position: relative;
     display: inline-block;
   }
 
-  .tooltip-container .tooltip-text {
+.tooltip-container .tooltip-text {
     visibility: hidden;
     width: 120px;
     background-color: black;
@@ -133,9 +121,21 @@ ul li {
     z-index: 1;
     opacity: 0;
     transition: opacity 0.3s;
-  }
+}
 
-  .tooltip-container:hover .tooltip-text {
+.tooltip-container:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
-  }
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 10px;
+    padding-right: 30px;
+}
