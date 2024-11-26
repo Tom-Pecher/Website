@@ -1,4 +1,13 @@
 
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Links Styling */
 a {
     color: #007BFF;
     text-decoration: none;
@@ -9,32 +18,23 @@ a:hover {
 }
 
 
+/* Body Styling */
 body {
-    font-family: Questrial , sans-serif;
+    font-family: Questrial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #201e1e;
 }
 
 
-.center-image {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 50%;
-    border-radius: 25px;
-}
-
-
-footer {
+/* Header Styling */
+header {
     text-align: center;
-    padding: 10px;
     background-color: #333;
     color: white;
+    padding: 20px;
+    margin-bottom: 20px;
 }
-
 
 h1 {
     color: white;
@@ -44,15 +44,8 @@ h2 {
     color: #333;
 }
 
-header {
-    text-align: center;
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    margin-bottom: 20px;
-}
 
-
+/* Navigation Styling */
 nav {
     background-color: #333;
     padding: 20px;
@@ -63,10 +56,12 @@ nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: center;
 }
 
 nav ul li {
-    display: inline;
     margin-right: 15px;
 }
 
@@ -83,16 +78,17 @@ nav ul li a:hover {
 }
 
 
-.progress-wrapper {
-    text-align: center;
+/* Image Styling */
+.center-image {
+    display: block;
+    margin: 20px auto;
+    width: 50%;
+    max-width: 90%;
+    height: auto;
+    border-radius: 25px;
 }
 
-progress {
-    width: 600px;
-    height: 40px;
-}
-
-
+/* Section Styling */
 section {
     margin: 20px;
     padding: 10px;
@@ -101,10 +97,11 @@ section {
 }
 
 
+/* Tooltip Styling */
 .tooltip-container {
     position: relative;
     display: inline-block;
-  }
+}
 
 .tooltip-container .tooltip-text {
     visibility: hidden;
@@ -115,7 +112,7 @@ section {
     border-radius: 5px;
     padding: 5px;
     position: absolute;
-    bottom: 100%; /* Position above the image */
+    bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
@@ -128,14 +125,84 @@ section {
     opacity: 1;
 }
 
+
+/* Table Styling */
 table {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto;
     border: 1px solid black;
+    border-collapse: collapse; /* Improve table appearance */
 }
 
 th, td {
     border: 1px solid black;
+    padding: 10px 30px;
+    text-align: center;
+}
+
+
+/* Progress Bar Styling */
+.progress-wrapper {
+    text-align: center;
+}
+
+progress {
+    width: 90%;
+    max-width: 600px;
+    height: 40px;
+}
+
+
+/* Footer Styling */
+footer {
+    text-align: center;
     padding: 10px;
-    padding-right: 30px;
+    background-color: #333;
+    color: white;
+}
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    section {
+        margin: 15px;
+    }
+
+    progress {
+        height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    nav ul li a {
+        padding: 8px 10px;
+    }
+
+    progress {
+        height: 20px;
+    }
+
+    footer {
+        font-size: 0.9rem;
+    }
 }
