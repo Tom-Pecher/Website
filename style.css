@@ -2,7 +2,7 @@
 /* General Reset */
 * {
     margin: 0;
-    padding: 0;
+    padding: 10;
     box-sizing: border-box;
 }
 
@@ -42,6 +42,7 @@ h1 {
 
 h2 {
     color: #333;
+    padding-bottom: 5px;
 }
 
 
@@ -91,7 +92,7 @@ nav ul li a:hover {
 /* Section Styling */
 section {
     margin: 20px;
-    padding: 10px;
+    padding: 20px;
     background-color: white;
     border-radius: 8px;
 }
@@ -163,6 +164,10 @@ footer {
 
 /* Media Queries */
 @media (max-width: 768px) {
+    .center-image {
+        width: 100%;
+    }
+
     nav ul {
         flex-direction: column;
     }
