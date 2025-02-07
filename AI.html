@@ -37,7 +37,7 @@
         <h2>Why I study AI</h2>
         <p>In my totally unbiased opinion, the study of artificial intelligence is by far the most interesting field in all of science.
             However, I also think that the name omits the most interesting aspect of the field.
-            Despite the concept of AI being fairly old, scientists still fundamentally disagree on what "artificial intelligence" is even supposed to mean.
+            Despite the concept of AI being fairly old, experts still fundamentally disagree on what "artificial intelligence" is even supposed to mean.
             I interpret this field as the study of intelligence (both natural and artificial) and how simple systems can display complex behaviour.
             I think that people often overlook the fact that AI is a study of ourselves just as much as it is a study of computer systems.
             Neural networks are intelligent agents, but so are humans and all living things, even society as a whole can be considered as a single self-sustaining agent.
@@ -51,15 +51,24 @@
 
     <section>
         <h2>AI Experience</h2>
-        <h3>Hypercustomizable Subtitling System (NLP)</h3>
+        <h3>Bipedal Walking in Increasingly Treacherous Terrain (2025, RL)</h3>
         <p>
-            As part of the "Experimental Systems Project" group module, we created a system that generates subtitles for any video in real-time.
-            A key goal with our system was to ensure that the underlying model would be able to perform even in noisy scenarios where the audio quality was poor. 
-            We achieved this by dynamically switching between models to best adapt to the audio conditions. 
-            The system was a success, and we were able to demonstrate it to our peers and lecturers. 
+            As part of a group project (and our collective introduction to RL), we conducted an experiment in which we implemented a variaty of RL-based methods and set them to train on the OpenAI Gym bipedal walker environment.
+            Specifically, we pretrained the models on the base environment (a flat surface) and then tested the best performing models on the "hardcore" environment (a surface with random bumps and holes).
+            This is a common RL problem and is widely considered to be quite difficult.
+            Never the less we managed to train a Soft Actor-Critic (SAC) and a SUNRISE agent to solve the hardcore environment (reach 300+ reward).
+            More impressive however, the SUNRISE agent managed to converge to this optimal strategy five times faster than existing models we could find.
+            This project was great fun and has made me go down an RL rabbit hole that I am still exploring in my individual project.
+            Many thanks to my group members for their hard work and dedication that made this project possible (they are all great programmers and great people so check out their LinkedIns here: 
+            (
+                <a href="https://www.linkedin.com/in/marilyn-d-costa-1731641a2/">Marilyn D'Costa</a>,
+                <a href="https://www.linkedin.com/in/ptolemy-morris-32919525b/">Ptolemy Morris</a>,
+                <a href="https://www.linkedin.com/in/dhru-r-0596b8243/">Dhru Randeria</a>,
+                <a href="https://www.linkedin.com/in/george-rawlinson-b28a1b288/">George Rawlinson</a>
+            )).
         </p>
 
-        <h3>Voice-based Action Selection (NLP)</h3>
+        <h3>Voice-based Action Selection (2024, NLP)</h3>
         <p>
             As part of the the VIP study "Creating immersive training experiences in VR", we intended to create a VR simulation for training users to be "effective bystanders" when witnessing sexual harassment.
             As lead developer, my role was to create a system that would classify the user's speech towards the perpetrator into one of a set of predetermined actions (such as distract the perpetrator etc.).
@@ -67,22 +76,23 @@
             The system is currently in the testing phase and I hope my contribution will help the study reach its goals.
         </p>
 
+        <h3>Hypercustomizable Subtitling System (2024, NLP)</h3>
+        <p>
+            As part of the "Experimental Systems Project" group module, we created a system that generates subtitles for any video in real-time.
+            A key goal with our system was to ensure that the underlying model would be able to perform even in noisy scenarios where the audio quality was poor. 
+            We achieved this by dynamically switching between models to best adapt to the audio conditions. 
+            The system was a success, and we were able to demonstrate it to our peers and lecturers. 
+        </p>
+
     </section>
 
     <section>
         <h2>Current Work</h2>
-        <h3>Bipedal Walking in Increasingly Treacherous Terrain (RL)</h3>
-        <p>
-            As part of a group RL project, we are currently working on evaluating a variety of RL-based methods for training a bipedal walker to navigate increasingly difficult terrain.
-            This project is still in the early stages, but I am excited to see how it will develop (will continue to update).
-        </p>
-
-        <h3>Building a Robust and Scalable RL-Based Traffic Control System</h3>
+        <h3>Building a Robust and Scalable Traffic Control System using Reinforcement Learning (2025, RL)</h3>
         <p>
             As my third-year individual project, I am working on creating an RL-based traffic control system that can dynamically adapt to traffic conditions and (hopefully) outperform simple actuated systems.
             A decent amount of research has been dedicated to this area, however most systems struggle with robustness (exhibit unpredictible behaviour) and scalability (struggle responding to new scenarios).
             This project aims to marry these two ideas in such a way that would make RL-based traffic control systems not only viable but preferable over existing fixed-control and actuated systems.
-            The project is still in the early stages, but I am excited to see how it will develop (will continue to update).
         </p>
     </section>
 
