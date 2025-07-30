@@ -27,6 +27,37 @@ body {
 }
 
 
+/* Grid Buttons */
+.grid-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.grid-button {
+    display: inline-block;
+    background-color: #d50000;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 15px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.grid-button:hover {
+    background-color: #e13636;
+}
+
+
 /* Header Styling */
 header {
     text-align: center;
