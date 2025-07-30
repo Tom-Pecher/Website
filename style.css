@@ -82,6 +82,15 @@ h3 {
 }
 
 
+/* Isometric Styling */
+.triangle-grid {
+    background-image: url("data/isometric_grid.png");
+    background-size: 100px 86.6px;
+    background-repeat: repeat;
+}
+
+
+
 /* Navigation Styling */
 nav {
     background-color: #333;
@@ -172,6 +181,7 @@ table {
     margin: 20px auto;
     border: 1px solid black;
     width: 100%;
+    background-color: #ffffff;
 }
 
 th, td {
@@ -180,6 +190,7 @@ th, td {
 }
 
 tr:nth-child(even) {background-color: #f2f2f2;}
+tr:nth-child(odd) {background-color: #ffffff;}
 
 
 /* Progress Bar Styling */
