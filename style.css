@@ -39,7 +39,7 @@ body {
 
 .grid-button {
     display: inline-block;
-    background-color: #d50000;
+    background-color: #343434;
     color: white;
     text-align: center;
     display: flex;
@@ -54,7 +54,36 @@ body {
 }
 
 .grid-button:hover {
-    background-color: #e13636;
+    background-color: #5e5e5e;
+}
+
+
+.section-button-1 {
+    background-color: #d50000;
+}
+.section-button-1:hover {
+    background-color: #ff1744;
+}
+
+.section-button-2 {
+    background-color: #00579e;
+}
+.section-button-2:hover {
+    background-color: #3478af;
+}
+
+.section-button-3 {
+    background-color: #e79717;
+}
+.section-button-3:hover {
+    background-color: #f0b626;
+}
+
+.section-button-4 {
+    background-color: #aa00d9;
+}
+.section-button-4:hover {
+    background-color: #c451d8;
 }
 
 
