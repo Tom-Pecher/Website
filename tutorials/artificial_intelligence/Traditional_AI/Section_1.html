@@ -43,8 +43,201 @@
 
         <section class="triangle-grid">
             <h2>Section 1: Uninformed Search Algorithms</h2>
+
+            <h3>The Premise</h3>
             <p>
-                Work in progress.
+                As the name suggest, uninformed search problems are a set of problems where we are searching for a specific solution, but we have no additional information about how to find it.
+                Mazes are a good example of uninformed search problems; a person in a maze has to search for a path to the exit, however they are given no hints about which direction to go.
+                In other words, the only way to find a solution to such a problem is by exhaustively searching each path to the exit (the set of all possible paths in a search problem is referred to as the search space).
+                There are a few different search strategies that can be used to find a solution to this problem.
+                As we shall see, how effective each strategy is depends on the shape of the search space.
+            </p>
+
+            <br>
+
+            <p>Despite being terribly inefficient for large problems, they are still useful in practice for a number of reasons:</p>
+            <ul>
+                <li>We often do not have any additional helpful information.</li>
+                <li>The algorithms are easy to understand and implement.</li>
+                <li>They form the foundation for more advanced search strategies.</li>
+            </ul>
+
+            <br>
+
+            <p>In this lesson, we’ll look at four main types:</p>
+            <ul>
+                <li><em>Breadth-First Search</em>   – explore level-by-level.</li>
+                <li><em>Depth-First Search</em>     – explore one path as far as possible before backtracking.</li>
+                <li><em>Uniform Cost Search</em>    – always follow the cheapest path so far.</li>
+                <li><em>Bidirectional Search</em>   – start from both the start and the goal and meet in the middle.</li>
+            </ul>
+
+            <br>
+
+            <h3>Key Insight: The Frontier</h3>
+            <p>
+                All of these algorithms share the concept of a frontier. Let us imagine that we are presented with some graph (a set of nodes connected by a set of edges) and we are tasked with finding a path from a start node to a goal node.
+                As we said, we do not have any additional information about the graph, therefore we have nothing better to do that start searching each node from the start node in an attempt to eventually create a path.
+                However, we do not want to just search randomly, as we may search some nodes twice whilst not visiting others: we need some way of keeping track of what nodes we have not yet visited.
+                This is where the frontier comes in: at a given timestep, the frontier is the set of all nodes that we have not yet visited, but are adjacent to a node that has already been visited.
+                In simpler terms, the frontier is the border between the set of nodes that have been searched and those that have not.
+                This is the key insight behind all of the following algorithms: if a node is in the frontier, then we know that there must be a path to it from the start node. 
+                Therefore, if we wish to find a path to the end node, at any given timestep we only need to search a node from the frontier, which will remove it from the frontier but add all of its unvisited neighbours.
+                This process will push the frontier further and further from the start node until we either find the goal node, or we run out of nodes to search (in which case there is no solution).
+                A very elegant solution indeed, all of the following algorithms incorporate this principle, and as a result are much better than randomly trying to guess a path.
+                Where the algorithms differ is how they choose which node in the frontier to search next (in computer science terms, what data structure they use to implement it).
+            </p>
+
+            <br>
+
+            <h3>Breadth-First Search</h3>
+            <p>
+                Breadth-First Search (BFS) explores the search space level by level. Think of it like looking for someone 
+                in a building by checking every room on the first floor, then every room on the second floor, and so on.
+                BFS finds the shortest path in terms of number of steps (if all steps have the same cost). 
+                Due to this property, BFS is excellent if each node in the search space has only a few connections (the number of connections that a node has is called its branching factor).
+                It follows then that the opposite is also true: BFS is computationally intractable for problems with large branching factors.
+            </p>
+            <h4>Implementation</h4>
+            <ol>
+                <li>Start with the starting node in the queue.</li>
+                <li>Remove the first node from the queue.</li>
+                <li>Add all unvisited neighbours to the end of the queue.</li>
+                <li>Stop when the goal is found.</li>
+            </ol>
+            <h4>Complexity</h4>
+            <ul>
+                <li><strong>Time:</strong> O(b<sup>d</sup>) where <em>b</em> is branching factor and <em>d</em> is depth.</li>
+                <li><strong>Space:</strong> O(b<sup>d</sup>), large memory use.</li>
+            </ul>
+
+
+            <br>
+
+
+            <h3>Depth-First Search</h3>
+            <p>
+                Conversely, Depth-First Search (DFS) explores a maze by following one path as far as possible before backtracking. 
+                Whilst not necessarily finding the shortest path, it is often faster (and more practical) than BFS.
+                DFS works best in a graph with few nodes but many connections. 
+                Sometimes, it gets stuck searching at the bottom of the search tree for long periods of time, however in practice this is often better than being stuck at the top like with BFS.
+            </p>
+            <h4>Implementations</h4>
+            <ul>
+                <li>Recursive DFS - function calls itself for each child.</li>
+                <li>Iterative DFS - uses a stack (LIFO).</li>
+            </ul>
+            <h4>Complexity</h4>
+            <ul>
+                <li><strong>Time:</strong> O(b<sup>m</sup>) where <em>m</em> is max depth.</li>
+                <li><strong>Space:</strong> O(bm), smaller than BFS.</li>
+            </ul>
+            <h4>Variants</h4>
+            <p>
+                In practice, DFS can be modified to prevent getting stuck in a rabbit hole at the bottom of the search tree. This can be achieved by limiting its maximum search depth:
+            </p>
+            <ul>
+                <li><strong>Depth-Limited Search</strong> - stop after set depth.</li>
+                <li><strong>Iterative Deepening DFS</strong> - DFS with gradually increasing depth limits.</li>
+            </ul>
+
+
+            <br>
+
+
+            <h3>Uniform Cost Search</h3>
+            <p>
+                Uniform Cost Search (UCS) is like BFS but considers cost (this is if the graph that we are search has weighted edges). 
+                Whilst you might understandably argue that this makes UCS an informed search algorithm, this is not true since the weights do not assist in solving the problem in the way that an evaluation function would.
+                UCS works by always expanding the node with the lowest total cost so far.
+                If you are familiar with Dijkstra’s algorithm, UCS is essentially the same thing, except that the goal of UCS is to find the shortest path to a single goal node, whereas Dijkstra will find the shortest path to all nodes in the network.
+                Like Dijkstra, UCS will always finds the cheapest path so long as the step costs are non-negative.
+            </p>
+            <h4>Implementation</h4>
+            <ul>
+                <li>Uses a priority queue (min-heap) ordered by path cost.</li>
+                <li>Always expand the lowest-cost node first.</li>
+            </ul>
+            <h4>Complexity</h4>
+            <ul>
+                <li>Worst-case similar to BFS in large search spaces.</li>
+            </ul>
+
+
+            <br>
+
+
+            <h3>Bidirectional Search</h3>
+            <p>
+                Unlike the other three algorithms, Bidirectional Search searches (using DFS) from both the start and the goal nodes.
+                In other words, this is equivalent to performing two DFSs simultaneously, except that now the algorithm terminates when one DFS reaches a node that has been visited by the other DFS.
+                This greatly reduces the search space which is a significant advantage, although this naturally comes at the cost of increased space usage.
+                One significant disadvantage of Bidirectional Search is that we must know the solution in order to begin the algorithm.
+            </p>
+            <h4>Implementation</h4>
+            <ul>
+                <li>One search from the start, another from the goal.</li>
+                <li>Stop when searches meet.</li>
+            </ul>
+            <h4>Complexity</h4>
+            <ul>
+                <li>Improves from O(b<sup>d</sup>) to about O(b<sup>d/2</sup>).</li>
+            </ul>
+
+
+            <br>
+
+
+            <h3>Comparison</h2>
+            <div style="overflow-x:auto;">
+                <table>
+                    <tr>
+                        <th>Algorithm</th>
+                        <th>Completeness</th>
+                        <th>Optimality</th>
+                        <th>Time Complexity</th>
+                        <th>Space Complexity</th>
+                        <th>Efficient Use Case</th>
+                    </tr>
+                    <tr>
+                        <td>BFS</td>
+                        <td>Yes</td>
+                        <td>Yes (equal cost)</td>
+                        <td>O(b<sup>d</sup>)</td>
+                        <td>O(b<sup>d</sup>)</td>
+                        <td>Shortest path in unweighted graph</td>
+                    </tr>
+                    <tr>
+                        <td>DFS</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>O(b<sup>m</sup>)</td>
+                        <td>O(bm)</td>
+                        <td>Deep search, low memory</td>
+                    </tr>
+                    <tr>
+                        <td>UCS</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Varies</td>
+                        <td>High</td>
+                        <td>Cheapest path in weighted graph</td>
+                    </tr>
+                    <tr>
+                        <td>Bidirectional</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>O(b<sup>d/2</sup>)</td>
+                        <td>High</td>
+                        <td>Known start &amp; goal, large search space</td>
+                    </tr>
+                </table>
+            <div/>
+
+            <p>
+                Uninformed search strategies might seem basic, but they’re the backbone of AI search theory. 
+                They work even when you know nothing about the problem and form the foundation for more advanced 
+                algorithms like A*.
             </p>
 
             <br>
