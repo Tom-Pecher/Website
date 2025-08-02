@@ -98,14 +98,14 @@
                 Due to this property, BFS is excellent if each node in the search space has only a few connections (the number of connections that a node has is called its branching factor).
                 It follows then that the opposite is also true: BFS is computationally intractable for problems with large branching factors.
             </p>
-            <h4>Implementation</h4>
+            <h4>Implementation:</h4>
             <ol>
                 <li>Start with the starting node in the queue.</li>
                 <li>Remove the first node from the queue.</li>
                 <li>Add all unvisited neighbours to the end of the queue.</li>
                 <li>Stop when the goal is found.</li>
             </ol>
-            <h4>Complexity</h4>
+            <h4>Complexity:</h4>
             <ul>
                 <li><strong>Time:</strong> O(b<sup>d</sup>) where <em>b</em> is branching factor and <em>d</em> is depth.</li>
                 <li><strong>Space:</strong> O(b<sup>d</sup>), large memory use.</li>
@@ -122,17 +122,17 @@
                 DFS works best in a graph with few nodes but many connections. 
                 Sometimes, it gets stuck searching at the bottom of the search tree for long periods of time, however in practice this is often better than being stuck at the top like with BFS.
             </p>
-            <h4>Implementations</h4>
+            <h4>Implementations:</h4>
             <ul>
                 <li>Recursive DFS - function calls itself for each child.</li>
                 <li>Iterative DFS - uses a stack (LIFO).</li>
             </ul>
-            <h4>Complexity</h4>
+            <h4>Complexity:</h4>
             <ul>
                 <li><strong>Time:</strong> O(b<sup>m</sup>) where <em>m</em> is max depth.</li>
                 <li><strong>Space:</strong> O(bm), smaller than BFS.</li>
             </ul>
-            <h4>Variants</h4>
+            <h4>Variants:</h4>
             <p>
                 In practice, DFS can be modified to prevent getting stuck in a rabbit hole at the bottom of the search tree. This can be achieved by limiting its maximum search depth:
             </p>
@@ -153,12 +153,12 @@
                 If you are familiar with Dijkstra’s algorithm, UCS is essentially the same thing, except that the goal of UCS is to find the shortest path to a single goal node, whereas Dijkstra will find the shortest path to all nodes in the network.
                 Like Dijkstra, UCS will always finds the cheapest path so long as the step costs are non-negative.
             </p>
-            <h4>Implementation</h4>
+            <h4>Implementation:</h4>
             <ul>
                 <li>Uses a priority queue (min-heap) ordered by path cost.</li>
                 <li>Always expand the lowest-cost node first.</li>
             </ul>
-            <h4>Complexity</h4>
+            <h4>Complexity:</h4>
             <ul>
                 <li>Worst-case similar to BFS in large search spaces.</li>
             </ul>
@@ -174,12 +174,12 @@
                 This greatly reduces the search space which is a significant advantage, although this naturally comes at the cost of increased space usage.
                 One significant disadvantage of Bidirectional Search is that we must know the solution in order to begin the algorithm.
             </p>
-            <h4>Implementation</h4>
+            <h4>Implementation:</h4>
             <ul>
                 <li>One search from the start, another from the goal.</li>
                 <li>Stop when searches meet.</li>
             </ul>
-            <h4>Complexity</h4>
+            <h4>Complexity:</h4>
             <ul>
                 <li>Improves from O(b<sup>d</sup>) to about O(b<sup>d/2</sup>).</li>
             </ul>
@@ -188,7 +188,7 @@
             <br>
 
 
-            <h3>Comparison</h2>
+            <h3>Comparison:</h3>
             <div style="overflow-x:auto;">
                 <table>
                     <tr>
@@ -205,7 +205,7 @@
                         <td>Yes (equal cost)</td>
                         <td>O(b<sup>d</sup>)</td>
                         <td>O(b<sup>d</sup>)</td>
-                        <td>Shortest path in unweighted graph</td>
+                        <td>Shortest path in unweighted graph.</td>
                     </tr>
                     <tr>
                         <td>DFS</td>
@@ -213,7 +213,7 @@
                         <td>No</td>
                         <td>O(b<sup>m</sup>)</td>
                         <td>O(bm)</td>
-                        <td>Deep search, low memory</td>
+                        <td>Deep search, low memory.</td>
                     </tr>
                     <tr>
                         <td>UCS</td>
@@ -221,7 +221,7 @@
                         <td>Yes</td>
                         <td>Varies</td>
                         <td>High</td>
-                        <td>Cheapest path in weighted graph</td>
+                        <td>Cheapest path in weighted graph.</td>
                     </tr>
                     <tr>
                         <td>Bidirectional</td>
@@ -229,7 +229,7 @@
                         <td>Yes</td>
                         <td>O(b<sup>d/2</sup>)</td>
                         <td>High</td>
-                        <td>Known start &amp; goal, large search space</td>
+                        <td>Known start and goal, large search space.</td>
                     </tr>
                 </table>
             <div/>
