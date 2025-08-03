@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Tom Pecher | Portfolio</title>
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Questrial:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="../../../data/profile_picture.jpeg"
+        />
+        <link rel="stylesheet" href="../../../style.css" />
+    </head>
+
+    <body>
+        <header>
+            <h1>Tom (Tomáš) Pecher</h1>
+            <p>
+                <b
+                    >CS & AI Student | Aspiring Software Developer | Passion for
+                    ML and Wolfram</b
+                >
+            </p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../../../skills.html">Skills</a></li>
+                <li><a href="../../../AI.html">AI</a></li>
+                <!-- <li><a href="wolfram.html">Wolfram</a></li> -->
+                <!-- <li><a href="mandarin.html">Mandarin</a></li> -->
+                <li><a href="../../../achievements.html">Achievements</a></li>
+                <li><a href="../../../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <section class="triangle-grid">
+            <h2>Section 2: Informed Search Algorithms</h2>
+            
+            <h3>The Premise</h3>
+            <p>
+                Informed search problems build upon what we discussed in the last section.
+                Such problems assume that we are provided with some additional information about the problem which can be used to inform the search.
+                Using this additional information, referred to as the heuristic, we can guide the search to find the best solution faster than if we were uninformed.
+                Whilst this heuristic does not have to be perfect, it needs to express some concept of how good a solution is, and hence which path is more promising.
+            </p>
+
+            <br>
+
+            <p>Why use informed search?</p>
+            <ul>
+                <li>Informed searches explore far fewer nodes than and uninformed search.</li>
+                <li>Since they are much faster, they allow us to explore larger search spaces.</li>
+                <li>Although heuristics may vary in quality, engineering the heuristic correctly can guarantee that the search finds best solution.</li>
+            </ul>
+
+            <br>
+
+            <p>In this lesson, we will look at four main types:</p>
+            <ul>
+                <li><em>Greedy Best-First Search</em> - follows the most promising-looking path.</li>
+                <li><em>A* Search</em> - optimal search balancing cost so far with estimated cost to goal.</li>
+                <li><em>Hill Climbing</em> - local search improving step-by-step.</li>
+                <li><em>Simulated Annealing</em> - hill climbing with occasional worse moves to escape traps.</li>
+            </ul>
+
+            <br>
+
+            <h3>Key Insight: The Heuristic</h3>
+            <p>
+                More specifically, a heuristic is a mathematical function that approximates how close a given state is to the goal.
+                To engineer an effective heuristic, it is important to consider the problem at hand and ensure that it is an effective measure of "distance" from the goal state.
+                However, in order for a heuristic to be optimal (in other words, to ensure that the heuristic will always result in the algorithm finding the best possible solution), it must satisfy two properties.
+                The first condition is admissibility: the heuristic must always overestimate the cost to reach the goal (conceptually, this means that the heuristic is "optimistic" and never overexaggerates the true distance to the goal).
+                The second condition is consistency: the heuristic must be monotonic, meaning that for any node <code>n</code> and successor <code>n'</code>, <code>h(n)≤c(n,n')+h(n')</code>.
+                In other words, the heuristic will improve only if we approach the goal, so the heuristic does not allow for any shortcuts (so if the heuristic decreases or stays the same, we can be sure that we have moved towards the goal: the heuristic function is <em>consistent</em> with the problem's measure of distance).
+                Admissibility and consistency guarantee optimality in an informed search, allowing us to effectively search a graph by simply calculating the heuristic at each node, and selecting the node with the lowest value.
+            </p>
+
+
+            <br>
+
+
+            <h3>Greedy Best-First Search</h3>
+            <p>
+                Expands the node with the lowest heuristic value.
+                An algorithm is called "greedy" if it always chooses the most promising option at a specific timestep, even if it is not the best option overall.
+                As a result, greedy algorithms are often faster, but they are often not guaranteed to find the best solution.
+            </p>
+            <ul>
+                <li>Fast, often explores fewer nodes than A*.</li>
+                <li>Not guaranteed to find the shortest path.</li>
+                <li>Can loop without tracking visited states.</li>
+            </ul>
+
+
+            <br>
+
+            
+            <h3>A* Search Algorithm</h3>
+            <p>
+                The A* search algorithm improves on the greedy approach be incorporating work required to get to the current node.
+                A* chooses the next node based on:
+                <code>f(n) = g(n) + h(n)</code>, where:
+            </p>
+            <ul>
+                <li><em>g(n)</em>: cost from start to this node.</li>
+                <li><em>h(n)</em>: heuristic estimate of cost from this node to the goal.</li>
+                <li><em>f(n)</em>: total estimated cost through this node.</li>
+            </ul>
+            <p>
+                A* expands the node with the lowest <code>f(n)</code> value. With an
+                admissible heuristic, A* is
+                <em>optimal</em> and <em>complete</em>.
+            </p>
+            <h4>Example Heuristics:</h4>
+            <ul>
+                <li>Maze navigation: straight-line distance to the goal.</li>
+                <li>Route planning: estimated driving time.</li>
+            </ul>
+            <h4>Implementation</h4>
+            <ul>
+                <li>Uses a priority queue ordered by <code>f(n)</code>.</li>
+                <li>Expands the smallest <code>f(n)</code> node first.</li>
+            </ul>
+            
+
+            <br>
+
+            
+            <h3>Hill Climbing</h3>
+            <p>
+                As its name suggests, hill climbing is a search algorithm that iteratively moves to a better neighbouring state until no improvement is possible.
+                It is a local search algorithm, meaning that it is only able to find local optima (if the initial position of the hill climber is far from the global optimum, it will likely get stuck in a local optimum, as it has no ability to escape).
+                Unlike the previous two algorithms, hill climbing is often used on continuous problems, such as finding the maximum value of a continuous function.
+            </p>
+            <h4>Variants</h4>
+            <ul>
+                <li><em>Steepest Ascent</em> - choose the best neighbour.</li>
+                <li><em>Stochastic</em> - choose a random improving move.</li>
+                <li><em>First-Choice</em> - pick the first improving move found.</li>
+            </ul>
+            <h4>Problems</h4>
+            <p> The main problems with hill climbing are:
+                <ul>
+                    <li>Local maxima - stuck on small peaks.</li>
+                    <li>Plateaus - flat areas with no improvement.</li>
+                    <li>Ridges - zigzag paths to higher ground.</li>
+                </ul>
+                These can be partially alleviated by using occasionally moving the climber to a random position are continuing the algorithm from there.
+            </p>
+
+
+            <br>
+
+            
+            <h3>Simulated Annealing</h3>
+            <p>
+                Simulated annealing is named after the process of annealing metal in a furnace, where the slow drecrease in temperature reduces the internal stresses within the material, so that it can be worked with without fracturing.
+                In a similar way, simulated annealing is the hill climbing algorithm with the introduction of a "temperature" variable.
+                The algorithm starts at high temperature which gradually decreases.
+                At high temperature, the hill climber is more likely to make random moves, and at low temperature, the algorithm is more likely to make moves that are focused on the solution.
+                This creates a balance between exploration and exploitation, allowing the algorithm a chance to escape local optima and increase the likelihood of finding the global optimum.
+            </p>
+
+            <h4>Temperature Scheduling</h4>
+            <p>
+            <ul>
+                <li>High temperature - more random moves.</li>
+                <li>Low temperature - focused search.</li>
+            </ul>
+                Worse moves are accepted with a probability that decreases as temperature drops.
+            </p>
+
+            <h4>Applications</h4>
+            <ul>
+                <li>Travelling Salesman Problem (TSP).</li>
+                <li>Scheduling problems.</li>
+                <li>Circuit design.</li>
+            </ul>
+
+            <br>
+
+            <h3>Conclusion</h3>
+            
+            <p>
+                Informed search is smarter aproach to traversing a search space because it uses extra information to focus on promising paths.
+                With the right heuristic or strategy, you can often solve problems faster, with less memory,
+                and sometimes even perfectly optimally.
+
+                <br>
+
+                One subset of informed search algorithms is that of "genetic algorithms". 
+                These algorithms use heuristics to exploit evolutionary theory to find the best solution to an incredibly wide range of problems (sometimes very complicated ones).
+                Genetic algorithms are so interesting, in fact, that I dedicated entire later section to them, which is why they have not been included in this discussion.
+            </p>
+           
+
+            <br>
+            <br>
+            <div class="grid-buttons" style="overflow-x:auto;">
+                <a href="Section_1.html" class="grid-button section-button-1">Previous</a>
+                <a href="Section_0.html" class="grid-button section-button-1">Course Home</a>
+                <a href="Section_3.html" class="grid-button section-button-1">Next</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>
+                Connect with me on
+                <a href="https://github.com/Tom-Pecher" target="_blank">GitHub</a>
+            </p>
+            <em><p>Updated on July 28th 2025</p></em>
+        </footer>
+    </body>
+</html>

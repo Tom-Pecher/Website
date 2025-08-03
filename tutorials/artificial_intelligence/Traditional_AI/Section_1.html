@@ -127,8 +127,6 @@
                 <li>Recursive DFS - function calls itself for each child.</li>
                 <li>Iterative DFS - uses a stack (LIFO).</li>
             </ul>
-            <h4>Complexity:</h4>
-            <ul>
                 <li><strong>Time:</strong> O(b<sup>m</sup>) where <em>m</em> is max depth.</li>
                 <li><strong>Space:</strong> O(bm), smaller than BFS.</li>
             </ul>
@@ -234,10 +232,20 @@
                 </table>
             <div/>
 
+
+            <br>
+
+            <h3>Conclusion</h3>
             <p>
                 Uninformed search strategies might seem basic, but they form the backbone of AI search theory. 
-                They work even when you know nothing about the problem and form the foundation for more advanced 
-                algorithms like A*.
+                They work even when you know nothing about the problem and form the foundation for more advanced algorithms like A*.
+                You may ask why such primitive algorithms are even considered as AI.
+                This is because, despite their simple nature, they are excellent at certain types of problem solving.
+                The example that is often associated with this is the Tower of Hanoi problem, where the goal is to move a stack of increasingly large disks from one peg to another, with the constraint that you cannot place a larger disk on a smaller one.
+                Despite being a trivial problem with a low number of disks, the solutions appears more and more complex as the number of disks increases.
+                However, if we consider the possible states of the game as a graph, then the problem becomes a graph search problem.
+                In this case, we can use an uninformed search algorithm to search and find the sequence of moves that solves the problem (relatively quickly too).
+                This complex behaviour (solving the Tower of Hanoi problem) resulting from these simple algorithms is why they are considered as AI.
             </p>
 
             <br>
