@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Tom Pecher | Portfolio</title>
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Questrial:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="../../../data/profile_picture.jpeg"
+        />
+        <link rel="stylesheet" href="../../../style.css" />
+    </head>
+
+    <body>
+        <header>
+            <h1>Tom (Tomáš) Pecher</h1>
+            <p>
+                <b
+                    >CS & AI Student | Aspiring Software Developer | Passion for
+                    ML and Wolfram</b
+                >
+            </p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../../../skills.html">Skills</a></li>
+                <li><a href="../../../AI.html">AI</a></li>
+                <!-- <li><a href="wolfram.html">Wolfram</a></li> -->
+                <!-- <li><a href="mandarin.html">Mandarin</a></li> -->
+                <li><a href="../../../achievements.html">Achievements</a></li>
+                <li><a href="../../../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <section class="triangle-grid">
+            <h2>Section 4: Constraint Satisfaction Algorithms</h2>
+            
+            <h3>The Premise</h3>
+            <p>
+                A Constraint Satisfaction Problem (CSP) is a search problem defined by:
+                <ul>
+                    <li>A set of <em>variables</em> (things that contain values).</li>
+                    <li>Each with a <em>domain</em> of possible values.</li>
+                    <li>A set of <em>domain</em> restricting allowable combinations of values.</li>
+                </ul>
+                The goal is to assign values to all variables such that all constraints are satisfied.
+
+                <br>
+                <br>
+
+                CSPs capture a huge range of AI tasks: map colouring, scheduling, Sudoku, cryptarithmetic puzzles, and resource allocation. 
+                They are powerful because they allow us to encode problems declaratively (what must be true) rather than procedurally (how to solve it).
+            </p>
+
+            <br>
+
+            <p>In this lesson, we will look at four CSP algorithms/techniques:</p>
+            <ul>
+                <li><em>Backtracking Search</em> - depth-first search that only traverses valid states.</li>
+                <li><em>Forward Checking</em> - backtracking search that foresees impossible states.</li>
+                <li><em>Maintaining Arc Consistency</em> - backtracking search that enforces arc consistency.</li>
+                <li><em>Min-Conflicts</em> - local search algorithm that iteratively removes conflicts between variables.</li>
+            </ul>
+
+            <br>
+
+            <h3>Key Insight: The Constraint Graph</h3>
+            <p>
+                In the context of CSPs, a solution is a full mapping from variables to values that satisfies all constraints.
+                Building on this, if we were to gradually start assigning values to variables, we can treat any partial mapping of the variables as a state on the way to our possible solution.
+                Hence, using this idea of gradually filling in the values of the variables, we can construct a graph of all possible states (some of which are solutions), known as a constraint graph.
+                Consequently, we can use this approach to treat any CSP as a search problem.
+
+                Of course, you might start to see the problem that, in the general case, the constraint graph is exponential in size.
+                This is because the number of possible mappings is exponential in the number of variables.
+                Therefore, if we are to reason about CSPs in this way, we need search algorithms that traverse the constraint graph efficiently and prune (remove wastful parts of the search tree) effectively.
+            </p>
+
+
+            <br>
+
+
+            <h3>Backtracking Search</h3>
+            <p>
+                Backtracking Search is a classic and simple approach to this search problem; it is essentially just a depth-first search on a constraint graph.
+                When in a state, it traverse into the next deepest state (conceptually, it fills in as many variables as it can) until it either finds a solution or not (if the constraints do not allow there to be a solution).
+                If no solution is found down a certain branch, it backtracks up to the last valid state and searches a different path.
+                Like depth-first search, it is guaranteed to find a solution if one exists, but is not guaranteed to find the best one. 
+            </p>
+            <ul>
+                <li><em>Completeness</em> : Guarantees that a solution will be found if one exists.</li>
+                <li><em>Simplicity</em> : Straightforward to implement (just depth-first search).</li>
+            </ul>
+            <br>
+            Backtracking Search serves as a baseline for CSPs and is the backbone of many more advanced CSP methods.
+            Although being simple, it is often very slow and requires a lot of memory.
+            However, there are a few simple enhancements that we can make to the search order to make it find a soltuion faster:
+            <ul>
+                <li>Variable search order: Search the variables in order of which have the fewest possible values (Minimum Remaining Values heuristic, MRV).</li>
+                <li>Value search order: Search the values in order of which constrain the fewest variables (Least Constraining Value heuristic, LCV)</li>
+            </ul>
+            <p>
+                With MRV, we prioritize and fill in variables that are harder to assign and need to be assigned first.
+                With LCV, we prioritize and assign the values that make it as easy to fill in the other variables.
+                These heuristics make it less likely for the Backtracking Search to run into dead ends, speeding up the search in general.    
+            </p>
+
+
+            <br>
+
+            
+            <h3>Forward Checking</h3>
+            <p>
+                An example of a possible improvement on Backtracking Search is Forward Checking. 
+                This is where, after searching a state, the algorithm looks ahead to eliminate any variables that are impossible to fill in.
+                For example, if a variable has only one possible value, it is impossible to fill in any other value for that variable.
+                Therefore, we can remove that variable from the search space and speed up the search.
+
+                This is a useful extention of Backtracking Search as it indentifies dead ends early and reduce wasted search effort.
+                Hence, forward checking is especially useful on problems with constraint graphs with a large depth factor (and therefore, many variables).
+            </p>
+
+
+            <br>
+
+
+            <h3>Maintaining Arc Consistency</h3>
+            <p>
+                An even stronger improvement, is Maintaining Arc Consistency (MAC). 
+                In each assignment, MAC enforces "arc consistency" (ensures that all values are consistent with constraints) across all constraints: every value in a variable’s domain must have a consistent supporting value in connected variables. 
+                If any variable’s domain is emptied, the algorithm backtracks immediately.
+
+                MAC prunes even more rigorously that Forward Checking, again making it favourable for deep constraint graphs with many variables.
+                However, as is common with more rigorous algorithms, it is also more computationally expensive.
+                As always, there is a trade-off between rigour and speed.
+            </p>
+
+            
+            <br>
+
+
+            <h3>Min-Conflicts</h3>
+            <p>
+                The Min-Conflicts algorithm is unique on this list as it is the only one that does not use a constraint graph approach.
+                It is instead a local search algorithm that uses Boolean logic to iteratively remove conflicts between variables.
+                At each stage of the algorithm, it picks the variable whose value is involved in the most conflicts and swaps its value in such a way that minimizes the total number of conflicts.
+                These steps are repeated until the solution is found and there are no conflicts left.
+            </p>
+            <ul>
+                <li><em>Efficiency</em> : Can solve some large problems quickly.</li>
+                <li><em>Simplicity</em> : Easy to implement and understand.</li>
+                <li><em>Completeness</em> : The algorithm is incomplete; it may get stuck in local minima and fail to find a solution even when one exists. However, with random restarts, it becomes probabilistically complete.</li>
+                <li><em>Memory requirements</em> : It maintains only the current assignment, making it very memory-efficient compared to tree-search algorithms that maintain search frontiers.</li>
+            </ul>
+
+            
+            <br>
+
+
+            <h3>Conclusion</h3>
+            
+            <p>
+                With this section on CSPs, we are approaching something which we might start to consider intelligent behaviour.
+                One can say that all of the algorithms and techniques shown in this section were merely search algorithms and thus involve no intelligent behaviour.
+                However, even if no intelligent or conscious behaviour is involved, we cannot argue that the results are not intelligent.
+                The CSP framework allows to represent very complex problems, everything from Sudoku to complex resource allocation.
+                Hence, I see this as the start of the border between regular computer science and the study of artificial intelligence, as this way of thinking can lead us to intelligent results, even the algorithms cannot reason like you and I.
+            </p>
+           
+
+            <br>
+            <br>
+            <div class="grid-buttons" style="overflow-x:auto;">
+                <a href="Section_3.html" class="grid-button section-button-1">Previous</a>
+                <a href="Section_0.html" class="grid-button section-button-1">Course Home</a>
+                <a href="Section_5.html" class="grid-button section-button-1">Next</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>Connect with me on <a href="https://github.com/Tom-Pecher" target="_blank">GitHub</a></p>
+            <em><p>Updated on <span id="last-updated"></span></p></em>
+        </footer>
+    
+    </body>
+    
+    
+    
+    <script>
+        const lastModified = new Date(document.lastModified);
+        document.getElementById("last-updated").textContent = lastModified.toLocaleDateString();
+    </script>
+
+
+
+</html>
