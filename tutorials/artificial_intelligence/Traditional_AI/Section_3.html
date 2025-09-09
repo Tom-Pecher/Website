@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Tom Pecher | Portfolio</title>
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Questrial:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="../../../data/profile_picture.jpeg"
+        />
+        <link rel="stylesheet" href="../../../style.css" />
+    </head>
+
+    <body>
+        <header>
+            <h1>Tom (Tomáš) Pecher</h1>
+            <p>
+                <b
+                    >CS & AI Student | Aspiring Software Developer | Passion for
+                    ML and Wolfram</b
+                >
+            </p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="../../../index.html">Home</a></li>
+                <li><a href="../../../skills.html">Skills</a></li>
+                <li><a href="../../../AI.html">AI</a></li>
+                <!-- <li><a href="wolfram.html">Wolfram</a></li> -->
+                <!-- <li><a href="mandarin.html">Mandarin</a></li> -->
+                <li><a href="../../../achievements.html">Achievements</a></li>
+                <li><a href="../../../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <section class="triangle-grid">
+            <h2>Section 3: Advanced Search Techniques</h2>
+            
+            <h3>The Premise</h3>
+            <p>
+                When classic search methods like A* become impractical, either due to memory limits or massive search spaces, you can turn to more advanced variants that.
+                These algorithms can:
+                <ul>
+                    <li>Reduce memory usage, though often trading off re-expansion or time.</li>
+                    <li>Bound computation, sacrificing completeness or optimality for efficiency.</li>
+                    <li>Use heuristic constraints or memory buffers smartly to focus the search.</li>
+                </ul>
+
+                These techniques shine in applications like route planning under tight resources, combinatorial optimization, or real-time search systems.
+            </p>
+
+            <br>
+
+            <p>In this lesson, we will look at five advanced search techniques:</p>
+            <ul>
+                <li><em>Iterative Deepening A*</em> - A* search with gradually increasing depth limits.</li>
+                <li><em>Recursive Best-First Search</em> - A* search implemented with recursion and backtracking.</li>
+                <li><em>Simplified Memory-Bounded A*</em> - A* search where only the best n nodes are kept in memory.</li>
+                <li><em>Beam Search</em> - local best-first search with limited frontier size (beam).</li>
+                <li><em>Tabu Search</em> - A* search with a list of "forbidden" moves to avoid immediate revisits.</li>
+            </ul>
+
+            <br>
+
+            <h3>Key Insight: Combining Algorithms</h3>
+            <p>
+                When one thinks of an "advanced" search algorithm, one might think of a single algorithm that has a really large number of steps, or steps that are very complicated.
+                This is almost always not the case.
+                The "advanced" nature of these algorithms comes from the fact that they combine the advantages of multiple algorithms.
+                Most of these algorithms are some variant of A* search, and for good reason: A* search is optimal if the heuristic is engineered properly.
+                Given this property, it is only natural to combine it with efficiency techniques, such as iterative deepening or memory-bounding, to maintain the accuracy of the search whilst improving time and memory efficiency.
+                This is especially important for large search spaces, where even informed search algorithms like A* can become intractable.
+            </p>
+
+
+            <br>
+
+
+            <h3>Iterative Deepening A*</h3>
+            <p>
+                Iterative Deepening A* (IDA*) is a memory-efficient variant of A* that combines heuristic-guided search with iterative deepening (a technique mentioned briefly in <a href="Section_1.html">Section 1</a>, where we progressively increase the depth limit). 
+                Rather than tracking all frontier nodes, it performs depth-first searches with an increasing threshold on the cost function: <code>f(n) = g(n) + h(n)</code>. 
+                The threshold begins at <code>h(start)</code> and increments to the minimum exceeded cost each iteration.
+            </p>
+            <ul>
+                <li><em>Memory</em> : Only stores the current path, so space complexity is O(d) (or O(bd) in a general tree, with b the branching factor and d the depth).</li>
+                <li><em>Time</em> : Typically exponential, similar to A* (e.g. O(b<sup>d</sup>) in the worst case), though heuristics help prune dramatically.</li>
+                <li><em>Optimality</em> : Guaranteed if the heuristic is admissible and consistent.</li>
+            </ul>
+
+
+            <br>
+
+            
+            <h3>Recursive Best-First Search</h3>
+            <p>
+                Recursive Best-First Search (RBFS) is an informed search that mimics A* but within linear memory by using recursion and backtracking. 
+                It keeps track only of the current path and the best alternative f-values when exceeding a bound.
+            </p>
+            <ul>
+                <li><em>Memory</em> : Linear in depth (not exponential).</li>
+                <li><em>Performance</em> : Often expands fewer nodes than IDA*, with slightly more memory usage but faster performance in practice.</li>
+                <li><em>Optimality</em> : If heuristic is admissible, RBFS finds optimal paths as well.</li>
+            </ul>
+
+
+            <br>
+
+
+            <h3>Simplified Memory-Bounded A*</h3>
+            <p>
+                Simplified Memory-Bounded A* (SMA*) is a memory-limited adaptation of A*. 
+                It uses normal A* search with OPEN and CLOSED lists, but prunes nodes when memory is exhausted by discarding the highest-cost leaf node and remembering its cost for potential regeneration later.
+            </p>
+            <ul>
+                <li><em>Memory control</em> : Guarantees usage within limits.</li>
+                <li><em>Graceful fallback</em> : If optimal path can't be stored, returns the best path possible under the memory constraint; becomes fully optimal if memory suffices.</li>
+            </ul>
+            
+            
+
+            <br>
+
+            
+            <h3>Beam Search</h3>
+            <p>
+                A common option in hyperparameter optimisation, beam search is a best-first heuristic search that, instead of keeping all frontier nodes, only retains a fixed number (beam width, β) of the most promising nodes per level. 
+                It continues expanding successors within this beam limit.
+            </p>
+            <ul>
+                <li><em>Memory bound</em> : Beam width caps memory and computation.</li>
+                <li><em>Speed</em> : Efficiently narrows focus to top paths.</li>
+                <li><em>Optimality Trade-Off</em> : May miss the optimal path (not complete or optimal).</li>
+            </ul>
+
+            <br>
+
+            <p>
+                Closely related is Local Beam Search, a local-search variant of beam search. 
+                It starts with k randomly chosen states (candidate solutions), generates all their neighbors, and selects the top k best among them for the next iteration, repeating until convergence.
+            </p>
+            <ul>
+                <li><em>Diverse exploration</em> : Simultaneously tracks multiple current candidates.</li>
+                <li><em>Robustness</em> : Less prone to being stuck in poor local optima.</li>
+                <li><em>Expensive</em> : Requires evaluating many neighbors each iteration; diversity may collapse over time.</li>
+            </ul>
+
+
+            <br>
+
+            
+            <h3>Tabu Search</h3>
+            <p>
+                Tabu Search is a heuristic search method that uses a list of "forbidden" moves to guide the search.
+                By using the memory of recent states (a tabu list) to avoid immediate revisits whilst allowing some worsening moves to escape local maxima or plateaus, Tabu Search can find a good middle ground between exploration and exploitation. 
+                It is conceptually a combination of A* and Hill Climbing.
+            </p>
+            <ul>
+                <li><em>Escaping cycles</em> : The tabu list prevents immediate backtracking.</li>
+                <li><em>Flexible</em> : Allows non-improving moves to escape local traps.</li>
+                <li><em>Customization</em> : Memory structures and tabu tenure can be tuned.</li>
+            </ul>
+
+
+            <br>
+
+            <h3>Conclusion</h3>
+            
+            <p>
+                My goal with this section was to demonstrate that there is no single "advanced" algorithm that will work the best in practice for any problem.
+                In fact, I would argue the opposite: the more advanced we make an algorithm, the more specialized it becomes.
+                I encourage you, the reader, to think of you knowledge as a toolbox of search techniques, not algorithms.
+                When you encounter a search problem that cannot be solved with uninformed/informed search techniques, think about what techniques you know, what properties you want your search algorithm to have, and how we can combine them for optimal efficiency to solve the specific problem.
+            </p>
+           
+
+            <br>
+            <br>
+            <div class="grid-buttons" style="overflow-x:auto;">
+                <a href="Section_2.html" class="grid-button section-button-1">Previous</a>
+                <a href="Section_0.html" class="grid-button section-button-1">Course Home</a>
+                <a href="Section_4.html" class="grid-button section-button-1">Next</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>Connect with me on <a href="https://github.com/Tom-Pecher" target="_blank">GitHub</a></p>
+            <em><p>Updated on <span id="last-updated"></span></p></em>
+        </footer>
+    
+    </body>
+    
+    
+    
+    <script>
+        const lastModified = new Date(document.lastModified);
+        document.getElementById("last-updated").textContent = lastModified.toLocaleDateString();
+    </script>
+
+
+
+</html>
