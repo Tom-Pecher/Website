@@ -432,17 +432,20 @@
     </section>
 
     <footer>
-        <p>Connect with me on <a href="https://github.com/Tom-Pecher" target="_blank">GitHub</a></p>
-        <em><p>Updated on <span id="last-updated"></span></p></em>
+        <p>Connect with me on
+           <a href="https://github.com/Tom-Pecher" target="_blank">GitHub</a></p>
+        <em>Updated on <span id="last_updated"></span></em>
     </footer>
 
 </body>
-
-
-
+      
 <script>
-    const lastModified = new Date(document.lastModified);
-    document.getElementById("last-updated").textContent = lastModified.toLocaleDateString();
+    fetch("/last_updated.json")
+    .then(r => r.json())
+    .then(data => {
+        document.getElementById("last_updated").textContent = data.last_updated;
+    })
+    .catch(err => console.error("Could not load last_updated.json:", err));
 </script>
 
 
