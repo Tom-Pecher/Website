@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Right to PRIVACY: How AI Will Erode Our Autonomy</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Crimson+Pro:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #000000;
+            --accent: #ff0000;
+            --secondary: #004ab9;
+            --bg: #ffffff;
+            --gray: #666666;
+            --light-gray: #f5f5f5;
+            --grid: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: var(--bg);
+            color: var(--primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .poster {
+            width: 1200px;
+            margin: 0 auto;
+            padding: 60px;
+            background: white;
+            position: relative;
+        }
+
+        /* Surveillance grid background */
+        .poster::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.3;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            border-left: 8px solid var(--accent);
+            padding-left: 30px;
+            margin-bottom: 40px;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .title {
+            font-family: 'Space Mono', monospace;
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            letter-spacing: -2px;
+        }
+
+        .title .privacy {
+            color: var(--accent);
+            position: relative;
+            display: inline-block;
+        }
+
+        .title .privacy::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .subtitle {
+            font-size: 28px;
+            color: var(--gray);
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .author {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            color: var(--secondary);
+            margin-top: 20px;
+        }
+
+        /* Preamble */
+        .preamble {
+            background: var(--primary);
+            color: var(--bg);
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 2px;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .preamble h2 {
+            font-family: 'Space Mono', monospace;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .preamble p {
+            font-size: 20px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .preamble strong {
+            color: var(--accent);
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        .stat {
+            background: var(--light-gray);
+            padding: 25px;
+            border-left: 4px solid var(--secondary);
+            transition: all 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--gray);
+            line-height: 1.4;
+        }
+
+        /* Main content grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        /* Problem cards */
+        .problem {
+            background: var(--bg);
+            border: 2px solid var(--primary);
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            animation: fadeIn 1s ease-out calc(0.9s + var(--delay)) both;
+        }
+
+        .problem::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--accent);
+        }
+
+        .problem h3 {
+            font-family: 'Space Mono', monospace;
+            font-size: 28px;
+            margin-bottom: 15px;
+            margin-left: 20px;
+            color: var(--primary);
+        }
+
+        .problem-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 72px;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0.15;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            line-height: 1;
+        }
+
+        .problem p,
+        .problem ul {
+            margin-left: 20px;
+            margin-bottom: 12px;
+            font-size: 17px;
+        }
+
+        .problem ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .problem li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .problem li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .problem strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Solutions section */
+        .solutions {
+            background: var(--secondary);
+            color: white;
+            padding: 40px;
+            margin: 40px 0;
+            grid-column: 1 / -1;
+            animation: fadeIn 1s ease-out 1.5s both;
+        }
+
+        .solutions h2 {
+            font-family: 'Space Mono', monospace;
+            font-size: 36px;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .solution-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-left: 4px solid white;
+        }
+
+        .solution-item h4 {
+            font-family: 'Space Mono', monospace;
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .solution-item p {
+            font-size: 16px;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        /* Neglectedness section */
+        .neglectedness {
+            background: var(--light-gray);
+            padding: 40px;
+            margin: 40px 0;
+            grid-column: 1 / -1;
+            border-top: 4px solid var(--accent);
+            border-bottom: 4px solid var(--accent);
+            animation: fadeIn 1s ease-out 1.2s both;
+        }
+
+        .neglectedness h2 {
+            font-family: 'Space Mono', monospace;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .neglectedness-content {
+            columns: 2;
+            column-gap: 40px;
+            font-size: 17px;
+        }
+
+        .neglectedness-content p {
+            margin-bottom: 15px;
+            break-inside: avoid;
+        }
+
+        .neglectedness strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Quote/callout boxes */
+        .callout {
+            background: #ab0000;
+            color: white;
+            padding: 25px;
+            margin: 30px 0;
+            font-size: 22px;
+            font-style: italic;
+            border-left: 8px solid var(--primary);
+            animation: fadeIn 1s ease-out 1.8s both;
+        }
+
+        .callout strong {
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        /* Final remarks */
+        .final {
+            background: var(--primary);
+            color: white;
+            padding: 40px;
+            margin-top: 40px;
+            /* text-align: center; */
+            animation: fadeIn 1s ease-out 2s both;
+        }
+
+        .final h2 {
+            font-family: 'Space Mono', monospace;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .final p {
+            font-size: 20px;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .final .tagline {
+            font-family: 'Space Mono', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 30px;
+            color: var(--accent);
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        /* EA Logo/Badge */
+        .ea-badge {
+            position: absolute;
+            top: 60px;
+            right: 60px;
+            background: var(--secondary);
+            color: white;
+            padding: 15px 25px;
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            transform: rotate(3deg);
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 10px;
+            opacity: 0.7;
+        }
+
+        /* Print optimisation */
+        @media print {
+            .poster {
+                width: 100%;
+                padding: 40px;
+            }
+
+            * {
+                animation: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="poster">
+        <div class="ea-badge">EA PATH2IMPACT<br>FELLOWSHIP 2026</div>
+
+        <div class="content">
+            <!-- Header -->
+            <div class="header">
+                <div class="title">
+                    THE RIGHT TO <span class="privacy">PRIVACY</span>
+                </div>
+                <div class="subtitle">How AI Will Erode Our Autonomy and What We Can Do</div>
+                <div class="author">Path to Impact Fellowship | University of Bath</div>
+            </div>
+
+            <!-- Preamble -->
+            <div class="preamble">
+                <p>Before reading, there are some things I should make clear.</p>
+                <h2>I am <u>pro-AI</u>. I am also <u>pro-human</u>.</h2>
+                <br>
+                <p><strong>AI should preserve human values, not erode them.</strong> We live in a time of great change,
+                    and there is a thin line between overregulation (stagnation) and unchecked progress (danger). All
+                    those
+                    building AI, myself included, must be held to the highest responsibility to ensure a healthy future
+                    between humanity and AI.</p>
+                <p><strong><u>Privacy</u> is defined as "a state in which one is not observed or disturbed by other
+                        people".</strong>
+                    Privacy is freedom from being watched, to make your own choices and to live your life without fear.
+                    Without it, our behaviour is no longer free and our lives are no longer our own. Privacy enables
+                    self-actualisation, equal opportunity, and is the cornerstone of any healthy society.</p>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="stat-number">5B+</div>
+                    <div class="stat-label">Internet users under AI surveillance daily (<a
+                            href="https://worldpopulationreview.com/country-rankings/internet-users-by-country">World
+                            Population Review</a>, estimates vary).</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">87M</div>
+                    <div class="stat-label">Facebook profiles harvested by Cambridge Analytica (see <a
+                            href="https://www.huntress.com/threat-library/data-breach/cambridge-facebook-scandal-data-breach">Huntress
+                            for more</a>)
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">r=0.56</div>
+                    <div class="stat-label">Correlation between real personality and machine prediction - your friend's
+                        prediction is only r=0.48 (<a
+                            href="https://www.sciencedirect.com/science/article/pii/S0191886917307328">Nature</a>)</div>
+                </div>
+            </div>
+
+            <div class="preamble">
+                <p><strong>Data is THE commodity of the Fourth Industrial Revolution.</strong> Five billion internet
+                    users leave digital footprints daily. Even without AI, these reveal locations, purchases,
+                    relationships, and political views. With AI, the picture becomes complete, all-encompassing and
+                    profoundly dangerous.</p>
+            </div>
+
+            <!-- Introduction -->
+            <div class="callout">
+                <strong>THE PROBLEM: Delayed suffering.</strong> Unlike physical surveillance cameras, AI-driven
+                profiling is opaque, hidden and insidious. The harm isn't apparent until it's too late: until you're
+                denied a job,
+                manipulated into a purchase, or pushed toward extremism.
+            </div>
+
+            <!-- Main Grid -->
+            <div class="main-grid">
+                <!-- Problem 1 -->
+                <div class="problem" style="--delay: 0s;">
+                    <div class="problem-number">01</div>
+                    <h3>MANIPULATION</h3>
+                    <p><strong>Models can know you better than you know yourself.</strong> AI predicts behavior more
+                        accurately than close friends or family. This asymmetry of knowledge creates asymmetry of power.
+                    </p>
+                    <ul>
+                        <li><strong>Behavioral nudging:</strong> Algorithms don't just predict what you want, they
+                            create
+                            it. Each click trains the system to manipulate you better.</li>
+                        <li><strong>87 million profiles</strong> harvested for psychological micro-targeting that we
+                            know of (just from Cambridge
+                            Analytica).</li>
+                        <li><strong>Dead Internet Theory</strong>: AI content is beginning to drown authentic discourse.
+                            One
+                            can no longer trust if an opinion was created under the conscious scrutiny of a human mind.
+                        </li>
+                        <li><strong>Democracy requires</strong> good-faith debate of clashing ideas, and informed
+                            citizens making autonomous choices. Networks of bots and AI echo chambers destroy both.</li>
+                    </ul>
+                </div>
+
+                <!-- Problem 2 -->
+                <div class="problem" style="--delay: 0.2s;">
+                    <div class="problem-number">02</div>
+                    <h3>INEQUALITY</h3>
+                    <p><strong>The wealthy can afford privacy.</strong> Encryption, private VPNs, legal teams. The
+                        wealthy can
+                        buy their way out.</p>
+                    <p><strong>The poor are surveilled, profiled, exploited.</strong> Free services harvest data.
+                        Algorithmic hiring filters. Predictive policing. Predatory advertising.</p>
+                    <p><strong>The counterargument fails:</strong> "Profiling gives people what they want." Wrong. The
+                        person should want to purchase first—not have desire manufactured for them. This marketing
+                        exploits masses with little benefit to average people.</p>
+                    <p><strong>Privacy inequality compounds all inequalities.</strong> Without privacy, you're locked
+                        into algorithmic profiles determining credit, jobs, insurance - often proxies for race and
+                        class.
+                    </p>
+                    <p><strong>When used this way, AI is a tool of oppression.</strong> It strips the average person
+                        (who cannot meaningfully contest) of
+                        their agency and concentrates power at the top.</p>
+                </div>
+
+                <!-- Problem 3 -->
+                <div class="problem" style="--delay: 0.4s; grid-column: 1 / -1;">
+                    <div class="problem-number">03</div>
+                    <h3>SELF-CENSORSHIP</h3>
+                    <p><strong>The Panopticon effect:</strong> People self-censor when watched. Jeremy Bentham's
+                        (Panopticon) prison
+                        design worked through uncertainty alone. Today we live in a digital panopticon.</p>
+                    <ul>
+                        <li><strong>All individuals at risk,</strong> but especially activists, journalists,
+                            whistleblowers.</li>
+                        <li><strong>Progress requires challenging status quo.</strong> EA itself challenges conventional
+                            charity. Without privacy and the ability to act on your will alone, such challenges become
+                            dangerous.</li>
+                        <li><strong>Surveillance breeds conformity. Conformity breeds stagnation.</strong> When every
+                            deviation is recorded and has the potential to be weaponised, people choose safety over
+                            truth.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Neglectedness -->
+            <div class="neglectedness">
+                <div class="section-label">EA Framework: Neglectedness</div>
+                <h2>Why This Problem Persists</h2>
+                <div class="neglectedness-content">
+                    <p><strong>Individual consent is broken.</strong> Average Terms of Service takes 74 minutes to read.
+                        Companies design them to be incomprehensible. No one reads them. Everyone clicks "agree."</p>
+
+                    <p><strong>Regulation lags by years.</strong> By the time laws address one violation, three new
+                        techniques emerge. Legislators often fail to understand the nuances of the technology. Lobbyists
+                        ensure they never will.
+                    </p>
+
+                    <p><strong>Economic incentives favour surveillance.</strong> The surveillance economy is worth $150+
+                        billion (see <a
+                            href="https://www.thebusinessresearchcompany.com/report/surveillance-technology-global-market-report">here</a>).
+                        Every privacy-preserving choice reduces profit.</p>
+
+                    <p><strong>Capitalism is structurally disincentivised from prioritising goodwill.</strong> When
+                        immoral profit opportunities exist,
+                        they will be exploited. Change requires changing incentives: tighter regulation, real-time
+                        enforcement, criminal penalties for executives.</p>
+
+                    <p><strong>Most AI safety work ignores privacy.</strong> Resources flow toward alignment and
+                        existential risk. Privacy advocacy remains fragmented and under-resourced.</p>
+
+                    <p><strong>I argue: Intentional misuse is a greater threat than accidental misalignment.</strong> We
+                        debate hypothetical superintelligence while companies actively manipulate billions. The
+                        catastrophe isn't coming. <i>It's here.</i></p>
+                </div>
+            </div>
+
+            <!-- Solutions -->
+            <div class="solutions">
+                <div class="section-label" style="color: rgba(255,255,255,0.7);">EA Framework: Tractability</div>
+                <h2>SOLUTIONS: What We Can Do</h2>
+                <div class="solutions-grid">
+                    <div class="solution-item">
+                        <h4>1. Privacy-Preserving AI</h4>
+                        <p>Federated learning, differential privacy, homomorphic encryption. Technology exists to
+                            protect privacy while enabling AI, it needs funding and adoption.</p>
+                    </div>
+                    <div class="solution-item">
+                        <h4>2. Open-Source Alternatives</h4>
+                        <p>Signal, Firefox, DuckDuckGo. Privacy-respecting tools need funding to compete with
+                            surveillance giants.</p>
+                    </div>
+                    <div class="solution-item">
+                        <h4>3. Auditing & Transparency</h4>
+                        <p>Mandatory algorithmic impact assessments. Red-teaming for privacy violations. Legislation
+                            requiring explainability.</p>
+                    </div>
+                    <div class="solution-item">
+                        <h4>4. Privacy Literacy</h4>
+                        <p>People need to viscerally understand surveillance, not just abstractly. Show them their data
+                            profile. Reveal the hidden infrastructure. Build collective action.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional stats -->
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="stat-number">74min</div>
+                    <div class="stat-label">To read average Terms of Service (no one does)</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">$150B+</div>
+                    <div class="stat-label">Surveillance economy valuation (2024)</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">30B+</div>
+                    <div class="stat-label">Photos in Clearview AI's facial recognition database</div>
+                </div>
+            </div>
+
+            <!-- Final remarks -->
+            <div class="final">
+                <h2>FINAL REMARKS</h2>
+                <p>To conclude, we cannot appeal to and wait for the goodwill of companies to protect our privacy,
+                    goodwill and
+                    profits rarely mix. If there is to be any change, then it is the insentives themselves that
+                    encourage the use of aggressive AI surveillance that must be dismantled.
+                    Sadly, this is a problem that only legislators can solve, and outside of educating yourself and
+                    others on the threat that AI presents to privacy, or supporting specific NGOs, there is little we
+                    can do as individuals.
+
+                </p>
+                <p>
+                    <strong><u>Here is the bottom line that I want you to remember:</u></strong> the system that
+                    exploits our
+                    every
+                    action
+                    relies on your learned helplessness. It relies on the nihilistic belief that you are powerless
+                    to change your situation and so you should accept your current state as the norm.
+                    But this is not normal, at least not in any society that values freedom.
+                    So even though your influence as an individual is small, you should never accept this
+                    exploitation. One day, the law will catch up.
+
+                </p>
+
+                <p class="tagline">"Until then, we must stay true to our values and
+                    keep pushing for a better future, because one day we will get there."</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add hover effects for stats
+        document.querySelectorAll('.stat').forEach(stat => {
+            stat.addEventListener('mouseenter', function () {
+                this.style.borderLeft = '4px solid #ff0000';
+            });
+            stat.addEventListener('mouseleave', function () {
+                this.style.borderLeft = '4px solid #0066ff';
+            });
+        });
+
+        // Smooth scroll reveal animations (if viewing in browser)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.problem, .stat, .callout').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
